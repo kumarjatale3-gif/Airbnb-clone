@@ -16,3 +16,34 @@
     }, false)
   })
 })()
+
+let searchInput = document.getElementById("searchInput");
+let suggestions = document.getElementById("suggestions");
+
+searchInput.addEventListener("input", async () => {
+
+    let q = searchInput.value.trim();
+
+    if (q === "") {
+        suggestions.innerHTML = "";
+        return;
+    }
+
+    let response = await fetch(`/listings/suggestions?q=${q}`);
+    let data = await response.json();
+
+    suggestions.innerHTML = "";
+
+    data.forEach(title => {
+        let div = document.createElement("div");
+
+        div.innerText = title;
+
+        div.addEventListener("click", () => {
+            searchInput.value = title;
+            suggestions.innerHTML = "";
+        });
+
+        suggestions.appendChild(div);
+    });
+});

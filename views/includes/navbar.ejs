@@ -5,6 +5,7 @@
     border-radius: 25px;
     padding: 0 1rem 0 1rem;
   }
+
   .btn-search:hover {
     background-color: #fe424d;
     color: #fff;
@@ -34,10 +35,13 @@
       </div>
 
       <div class="navbar-nav ms-auto">
-        <form class="d-flex" role="search">
-      <input class="form-control me-2 search-inp" type="search" placeholder="Search destinations" />
-      <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
-    </form>
+        <form action="/listings/search" method="GET" class="d-flex" role="search">
+          <div class="search-container">
+            <input name="q" id="searchInput" class="form-control me-2 search-inp" type="search" placeholder="Search destinations" />
+            <div id="suggestions"></div>
+          </div>
+          <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+        </form>
       </div>
 
       <div class="navbar-nav ms-auto">

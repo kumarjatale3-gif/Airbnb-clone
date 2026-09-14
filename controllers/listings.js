@@ -68,6 +68,30 @@ module.exports.updateListing = async (req, res, next) => {
   res.redirect(`/listings/${id}`);
 }
 
+module.exports.search = async (req, res) => {
+    let { q } = req.query;
+
+    let allListings = await Listing.find({
+        title: { $regex: q, $options: "i" }
+    });
+
+    res.render("listings/index.ejs", { allListings: allListings });
+}
+
+module.exports.suggestions = async (req, res) => {
+    let { q } = req.query;
+
+    if (!q) {
+        return res.json([]);
+    }
+
+    let listings = await Listing.find({
+        title: { $regex: q, $options: "i" }
+    }).limit(5);
+
+    res.json(listings.map(listing => listing.title));
+}
+
 module.exports.destroyListing = async (req, res) => {
   let { id } = req.params;
   let deleteListing = await Listing.findByIdAndDelete(id);

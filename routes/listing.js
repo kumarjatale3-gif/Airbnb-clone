@@ -4,6 +4,7 @@ const wrapAsync = require("../utils/wrapAsync.js");
 const { isLoggedIn, isOwner, validateListing } = require("../middleware.js");
 
 const listingController = require("../controllers/listings.js");
+const Listing = require("../models/listing.js");
 
 const multer = require("multer");
 const { storage } = require("../cloudConfig.js");
@@ -20,6 +21,13 @@ router.route("/")
     wrapAsync(listingController.createListing)
   );
   
+
+
+router.get("/search", listingController.search);
+
+
+router.get("/suggestions", listingController.suggestions);
+
 
 // New Route
 router.get("/new", isLoggedIn, listingController.renderNewForm);
@@ -46,5 +54,6 @@ router.get("/:id/edit",
   isOwner,
   wrapAsync(listingController.renderEditForm)
 );
+
 
 module.exports = router;
