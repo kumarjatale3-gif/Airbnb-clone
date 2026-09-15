@@ -20,7 +20,7 @@ const reviewsRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -64,7 +64,7 @@ const sessionOptions =  {
   secret : process.env.SECRET,
   resave : false,
   saveUninitialized : true,
-  cookies: {
+  cookie: {
     expires : Date.now() + 7 * 24 * 60 * 60 * 1000,
     maxAge : 7 * 24 * 60 * 60 * 1000,
   }

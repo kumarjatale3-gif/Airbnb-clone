@@ -33,6 +33,14 @@ router.get("/suggestions", listingController.suggestions);
 router.get("/new", isLoggedIn, listingController.renderNewForm);
 
 
+// Edit Rout
+router.get("/:id/edit",
+  isLoggedIn,
+  isOwner,
+  wrapAsync(listingController.renderEditForm)
+);
+
+
 // Show, Update & Delete routes
 router.route("/:id")
   .get(wrapAsync(listingController.showListing))
@@ -46,14 +54,6 @@ router.route("/:id")
     isLoggedIn,
     isOwner,
     wrapAsync(listingController.destroyListing))
-
-
-// Edit Rout
-router.get("/:id/edit",
-  isLoggedIn,
-  isOwner,
-  wrapAsync(listingController.renderEditForm)
-);
 
 
 module.exports = router;

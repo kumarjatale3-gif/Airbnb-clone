@@ -29,7 +29,7 @@ searchInput.addEventListener("input", async () => {
         return;
     }
 
-    let response = await fetch(`/listings/suggestions?q=${q}`);
+    let response = await fetch(`/listings/suggestions?q=${encodeURIComponent(q)}`);
     let data = await response.json();
 
     suggestions.innerHTML = "";

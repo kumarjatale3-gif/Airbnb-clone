@@ -1,5 +1,5 @@
 <% layout("/layouts/boilerplate") -%>
-  <div class="row mg-3">
+  <div class="row mt-3">
     <div class="col-8 offset-2"><br>
       <h2>Edit this Listing</h2>
       <form method="POST" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
@@ -23,14 +23,14 @@
 
         <div class="mb-3">
           <label for="image" class="form-image">Upload new Image</label>
-          <input name="listing[image]" value="<%= listing.image %>" type="file" class="form-control" >
+          <input name="listing[image]"  type="file" class="form-control" >
         </div>
 
         <div class="row">
           <div class="mb-3 col-md-4">
             <label for="price" class="form-price">Price</label>
             <input name="listing[price]" value="<%=listing.price%>" type="number" class="form-control" required>
-            <div class="invalid-feedback">Price should br Valid</div>
+            <div class="invalid-feedback">Price should be Valid</div>
           </div>
 
           <div class="mb-3 col-md-8">
